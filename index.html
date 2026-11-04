@@ -108,12 +108,12 @@
     <section id="home" class="card hero fade">
       <div class="emoji">🏙️💕</div>
       <h1>你是哪座城的灵魂住户？</h1>
-      <p>12道温柔小问卷，从你的<strong>性格、节奏、预算、口味</strong>出发，<br>在全国 36 座城市里，挑出最懂你的 3 座本命宜居城 ✨</p>
+      <p>12道温柔小问卷，从你的<strong>性格、节奏、预算、口味</strong>出发，<br>在全国 <span class="cc">100</span> 座城市里，挑出最懂你的 3 座本命宜居城 ✨</p>
       <div class="tags">
         <b>🌤 气候适配</b><b>💰 房价友好</b><b>🍜 美食同频</b><b>🌿 氛围契合</b>
       </div>
       <div class="stats">
-        <div><div class="n">36</div><div class="t">候选城市</div></div>
+        <div><div class="n cc">36</div><div class="t">候选城市</div></div>
         <div><div class="n">12</div><div class="t">灵魂维度</div></div>
         <div><div class="n">2′</div><div class="t">轻松完成</div></div>
       </div>
@@ -133,13 +133,16 @@
 <script>
 /* ============ 城市数据库 ============ */
 /* 维度说明（1-5）：pace节奏(高=快) cost生活成本(高=贵) climate气候(高=暖) nature自然(高=山水) vibe氛围(高=文艺古韵) social(高=安静) career(高=事业导向) */
+/* 分组 g：搞钱组(一线/强二线) 潜力组(发展中二线三线) 宜居组(旅游/慢城/小众) */
 const CITIES = [
+ /* —— 直辖市 / 一线（搞钱组） —— */
  {n:"深圳",p:"广东",g:"搞钱组",pace:5,cost:5,climate:3,nature:2,vibe:1,social:2,career:5,price:"6.5",living:"8000-12000",ct:"温暖湿润",hl:"搞钱天花板，年轻人的造梦工厂",food:"seafood",foods:["椰子鸡","潮汕牛肉","肠粉"],play:["欢乐海岸","莲花山","较场尾"]},
  {n:"北京",p:"直辖市",g:"搞钱组",pace:5,cost:5,climate:2,nature:2,vibe:3,social:2,career:5,price:"6.0",living:"7000-11000",ct:"四季分明",hl:"权力与文化的中心舞台",food:"noodle",foods:["涮羊肉","炸酱面","烤鸭"],play:["故宫","胡同","奥森"]},
  {n:"上海",p:"直辖市",g:"搞钱组",pace:5,cost:5,climate:3,nature:2,vibe:2,social:2,career:5,price:"7.0",living:"8000-13000",ct:"温和湿润",hl:"精致摩登的国际都会",food:"light",foods:["生煎","本帮菜","小笼"],play:["武康路","外滩","迪士尼"]},
  {n:"广州",p:"广东",g:"搞钱组",pace:4,cost:4,climate:4,nature:2,vibe:2,social:2,career:4,price:"4.0",living:"5000-8000",ct:"亚热带",hl:"好吃不贵的烟火天堂",food:"light",foods:["早茶","烧腊","艇仔粥"],play:["珠江","沙面","白云山"]},
- {n:"杭州",p:"浙江",g:"潜力组",pace:4,cost:4,climate:4,nature:4,vibe:3,social:2,career:4,price:"3.5",living:"5000-9000",ct:"温润宜居",hl:"数字经济+西湖诗意",food:"light",foods:["西湖醋鱼","龙井虾仁","片儿川"],play:["西湖","灵隐","良渚"]},
+ /* —— 新一线 / 强二线（潜力组） —— */
  {n:"成都",p:"四川",g:"潜力组",pace:3,cost:3,climate:3,nature:3,vibe:4,social:3,career:3,price:"2.0",living:"3500-6000",ct:"湿润温和",hl:"巴适得板的慢活之都",food:"spicy",foods:["火锅","串串","担担面"],play:["宽窄巷子","玉林路","青城山"]},
+ {n:"杭州",p:"浙江",g:"潜力组",pace:4,cost:4,climate:4,nature:4,vibe:3,social:2,career:4,price:"3.5",living:"5000-9000",ct:"温润宜居",hl:"数字经济+西湖诗意",food:"light",foods:["西湖醋鱼","龙井虾仁","片儿川"],play:["西湖","灵隐","良渚"]},
  {n:"武汉",p:"湖北",g:"潜力组",pace:4,cost:3,climate:4,nature:3,vibe:3,social:3,career:4,price:"1.8",living:"3500-6000",ct:"湿热宜居",hl:"九省通衢的活力江湖",food:"spicy",foods:["热干面","小龙虾","藕汤"],play:["东湖","江汉路","黄鹤楼"]},
  {n:"南京",p:"江苏",g:"潜力组",pace:4,cost:4,climate:3,nature:3,vibe:4,social:3,career:4,price:"3.0",living:"4500-7500",ct:"四季分明",hl:"六朝古都的书卷气",food:"light",foods:["盐水鸭","汤包","皮肚面"],play:["夫子庙","玄武湖","鸡鸣寺"]},
  {n:"苏州",p:"江苏",g:"潜力组",pace:3,cost:4,climate:4,nature:4,vibe:4,social:3,career:3,price:"2.5",living:"4000-7000",ct:"温润江南",hl:"园林里的江南慢生活",food:"light",foods:["苏式面","松鼠桂鱼","糕团"],play:["拙政园","平江路","金鸡湖"]},
@@ -155,7 +158,44 @@ const CITIES = [
  {n:"佛山",p:"广东",g:"潜力组",pace:3,cost:3,climate:4,nature:2,vibe:3,social:3,career:3,price:"1.5",living:"3000-5000",ct:"亚热带",hl:"广佛同城的武术美食乡",food:"light",foods:["双皮奶","顺德菜","功夫"],play:["祖庙","岭南天地"]},
  {n:"沈阳",p:"辽宁",g:"潜力组",pace:3,cost:2,climate:1,nature:2,vibe:3,social:3,career:2,price:"1.0",living:"2500-4000",ct:"寒冷四季",hl:"豪爽东北的烟火老城",food:"spicy",foods:["烧烤","锅包肉","老边饺子"],play:["故宫","中街","西塔"]},
  {n:"无锡",p:"江苏",g:"潜力组",pace:3,cost:3,climate:4,nature:4,vibe:3,social:3,career:3,price:"1.8",living:"3500-5500",ct:"温润江南",hl:"太湖边的甜润小城",food:"light",foods:["小笼","酱排骨","太湖三白"],play:["鼋头渚","蠡园"]},
+ {n:"福州",p:"福建",g:"潜力组",pace:3,cost:3,climate:5,nature:3,vibe:3,social:3,career:3,price:"2.2",living:"3500-6000",ct:"海滨温暖",hl:"泡着温泉吃鱼丸的舒服省会",food:"seafood",foods:["鱼丸","佛跳墙","捞化"],play:["三坊七巷","鼓山","平潭"]},
+ {n:"济南",p:"山东",g:"潜力组",pace:3,cost:3,climate:3,nature:3,vibe:3,social:3,career:3,price:"1.6",living:"3000-5000",ct:"四季分明",hl:"趵突泉边的泉城慢调",food:"noodle",foods:["把子肉","甜沫","油旋"],play:["趵突泉","大明湖","千佛山"]},
+ {n:"南昌",p:"江西",g:"潜力组",pace:3,cost:2,climate:4,nature:3,vibe:3,social:3,career:3,price:"1.3",living:"2800-4500",ct:"湿润温和",hl:"英雄城的烟火与赣江",food:"spicy",foods:["拌粉","瓦罐汤","赣菜"],play:["滕王阁","秋水广场","梅岭"]},
  {n:"昆明",p:"云南",g:"潜力组",pace:2,cost:2,climate:5,nature:5,vibe:3,social:3,career:2,price:"1.3",living:"2800-4500",ct:"四季如春",hl:"永远春天的康养之城",food:"light",foods:["过桥米线","菌子","鲜花饼"],play:["滇池","石林","翠湖"]},
+ {n:"贵阳",p:"贵州",g:"潜力组",pace:2,cost:2,climate:4,nature:4,vibe:3,social:3,career:2,price:"0.9",living:"2200-3600",ct:"避暑凉爽",hl:"爽爽的避暑大数据城",food:"spicy",foods:["酸汤鱼","肠旺面","糯米饭"],play:["甲秀楼","黔灵山","青岩"]},
+ {n:"南宁",p:"广西",g:"潜力组",pace:2,cost:2,climate:5,nature:4,vibe:3,social:3,career:2,price:"1.0",living:"2300-3800",ct:"绿城温润",hl:"半城绿树半城湖的绿城",food:"light",foods:["老友粉","柠檬鸭","酸嘢"],play:["青秀山","南湖","三街两巷"]},
+ {n:"大连",p:"辽宁",g:"潜力组",pace:3,cost:3,climate:3,nature:4,vibe:3,social:3,career:3,price:"1.5",living:"3200-5000",ct:"海洋性凉爽",hl:"有轨电车与海滨的浪漫城",food:"seafood",foods:["海鲜","焖子","烤海鲜"],play:["星海广场","金石滩","旅顺"]},
+ {n:"常州",p:"江苏",g:"潜力组",pace:3,cost:3,climate:4,nature:3,vibe:3,social:3,career:3,price:"1.6",living:"3200-5000",ct:"温润江南",hl:"恐龙园与江南园林的舒适城",food:"light",foods:["银丝面","萝卜干","天目湖鱼"],play:["恐龙园","天宁寺","天目湖"]},
+ {n:"南通",p:"江苏",g:"潜力组",pace:3,cost:3,climate:4,nature:3,vibe:3,social:3,career:3,price:"1.5",living:"3000-5000",ct:"温润沿江",hl:"靠江临海的安静实业城",food:"light",foods:["江鲜","文蛤","脆饼"],play:["濠河","狼山","如皋古城"]},
+ {n:"徐州",p:"江苏",g:"潜力组",pace:3,cost:2,climate:3,nature:3,vibe:3,social:3,career:3,price:"1.1",living:"2800-4500",ct:"四季分明",hl:"两汉文化与高铁枢纽",food:"noodle",foods:["地锅鸡","把子肉","饣它汤"],play:["云龙湖","龟山汉墓","户部山"]},
+ {n:"温州",p:"浙江",g:"潜力组",pace:3,cost:3,climate:5,nature:3,vibe:2,social:3,career:3,price:"2.0",living:"3500-5500",ct:"温暖湿润",hl:"民营经济与山海之间",food:"seafood",foods:["糯米饭","鱼饼","江蟹生"],play:["雁荡山","江心屿","楠溪江"]},
+ {n:"台州",p:"浙江",g:"潜力组",pace:3,cost:3,climate:5,nature:4,vibe:2,social:3,career:3,price:"1.8",living:"3200-5000",ct:"温暖海滨",hl:"山海之间的制造小城",food:"seafood",foods:["海鲜","麦虾","食饼筒"],play:["天台山","神仙居","台州府城"]},
+ {n:"金华",p:"浙江",g:"潜力组",pace:3,cost:3,climate:5,nature:3,vibe:2,social:3,career:3,price:"1.7",living:"3000-5000",ct:"温暖宜居",hl:"小商品与火腿的活力城",food:"light",foods:["金华火腿","酥饼","煲庄"],play:["义乌小商品城","双龙洞","横店"]},
+ {n:"潍坊",p:"山东",g:"潜力组",pace:3,cost:2,climate:3,nature:3,vibe:2,social:3,career:3,price:"0.9",living:"2500-4000",ct:"四季分明",hl:"风筝之都的朴实烟火",food:"noodle",foods:["肉火烧","朝天锅","鸡鸭和乐"],play:["风筝广场","十笏园","青州古城"]},
+ {n:"临沂",p:"山东",g:"潜力组",pace:3,cost:2,climate:3,nature:3,vibe:2,social:3,career:3,price:"0.8",living:"2300-3800",ct:"四季分明",hl:"商贸物流之都的实在城",food:"noodle",foods:["炒鸡","糁汤","煎饼"],play:["沂蒙山","王羲之故居","竹泉村"]},
+ {n:"淄博",p:"山东",g:"潜力组",pace:3,cost:2,climate:3,nature:3,vibe:2,social:3,career:3,price:"0.9",living:"2400-3800",ct:"四季分明",hl:"烧烤出圈的老工业城",food:"noodle",foods:["烧烤","博山菜","周村烧饼"],play:["淄川","周村古商城","潭溪山"]},
+ {n:"赣州",p:"江西",g:"潜力组",pace:2,cost:2,climate:5,nature:4,vibe:3,social:3,career:2,price:"0.9",living:"2300-3800",ct:"温暖湿润",hl:"江南宋城与客家故都",food:"spicy",foods:["赣南小炒","米粉","脐橙"],play:["郁孤台","通天岩","三百山"]},
+ {n:"芜湖",p:"安徽",g:"潜力组",pace:3,cost:2,climate:4,nature:3,vibe:3,social:3,career:3,price:"1.2",living:"2800-4500",ct:"温润沿江",hl:"半城山半城水的江城",food:"light",foods:["虾籽面","小笼","臭干子"],play:["镜湖","方特","鸠兹古镇"]},
+ {n:"柳州",p:"广西",g:"潜力组",pace:3,cost:2,climate:5,nature:3,vibe:3,social:3,career:2,price:"0.8",living:"2300-3800",ct:"山水温润",hl:"螺蛳粉与工业硬核城",food:"spicy",foods:["螺蛳粉","鸭脚","三江侗菜"],play:["柳江","马鞍山","程阳侗寨"]},
+ {n:"绵阳",p:"四川",g:"潜力组",pace:2,cost:2,climate:3,nature:3,vibe:2,social:3,career:3,price:"0.8",living:"2400-3800",ct:"温和湿润",hl:"科技城与安逸并存",food:"spicy",foods:["米粉","火锅","江油肥肠"],play:["越王楼","仙海","北川"]},
+ {n:"宜宾",p:"四川",g:"潜力组",pace:2,cost:2,climate:4,nature:4,vibe:2,social:3,career:2,price:"0.8",living:"2300-3800",ct:"温暖湿润",hl:"五粮液与长江第一城",food:"spicy",foods:["燃面","李庄白肉","筠连水粉"],play:["蜀南竹海","李庄古镇","三江口"]},
+ {n:"遵义",p:"贵州",g:"潜力组",pace:2,cost:2,climate:4,nature:4,vibe:2,social:3,career:2,price:"0.7",living:"2200-3600",ct:"凉爽宜居",hl:"红色名城与美酒河谷",food:"spicy",foods:["羊肉粉","豆花面","茅台"],play:["会议会址","赤水丹霞","海龙屯"]},
+ {n:"曲靖",p:"云南",g:"潜力组",pace:2,cost:2,climate:5,nature:4,vibe:2,social:3,career:2,price:"0.7",living:"2200-3500",ct:"四季温润",hl:"云南副中心的安逸城",food:"light",foods:["米线","宣威火腿","蒸饵丝"],play:["麒麟水乡","罗平油菜花","九龙瀑布"]},
+ {n:"张家口",p:"河北",g:"潜力组",pace:2,cost:2,climate:1,nature:4,vibe:2,social:3,career:2,price:"0.8",living:"2200-3600",ct:"寒冷干燥",hl:"冬奥之城与草原天路",food:"noodle",foods:["莜面","坝上羊肉","柴沟堡熏肉"],play:["草原天路","崇礼","大境门"]},
+ {n:"鄂尔多斯",p:"内蒙古",g:"潜力组",pace:2,cost:3,climate:1,nature:3,vibe:2,social:3,career:2,price:"0.9",living:"3000-4800",ct:"寒冷干燥",hl:"羊绒与草原的富裕城",food:"noodle",foods:["手把肉","鄂尔多斯炖菜","奶茶"],play:["响沙湾","成吉思汗陵","康巴什"]},
+ {n:"克拉玛依",p:"新疆",g:"潜力组",pace:2,cost:3,climate:1,nature:2,vibe:2,social:3,career:3,price:"0.5",living:"2800-4500",ct:"寒冷干燥",hl:"戈壁上的石油花园城",food:"noodle",foods:["拌面","大盘鸡","烤肉"],play:["魔鬼城","黑油山","艾里克湖"]},
+ {n:"库尔勒",p:"新疆",g:"潜力组",pace:2,cost:2,climate:2,nature:3,vibe:2,social:3,career:2,price:"0.6",living:"2600-4200",ct:"干燥温暖",hl:"梨城与天山南麓",food:"noodle",foods:["香梨","烤包子","拌面"],play:["孔雀河","铁门关","博斯腾湖"]},
+ {n:"嘉峪关",p:"甘肃",g:"潜力组",pace:2,cost:2,climate:1,nature:3,vibe:2,social:3,career:2,price:"0.5",living:"2500-4000",ct:"寒冷干燥",hl:"天下第一雄关的钢城",food:"noodle",foods:["搓鱼面","烤肉","糊锅"],play:["嘉峪关关城","方特","悬壁长城"]},
+ {n:"石家庄",p:"河北",g:"潜力组",pace:3,cost:2,climate:2,nature:2,vibe:2,social:3,career:3,price:"1.3",living:"2600-4200",ct:"四季分明",hl:"火车拉来的省会与枢纽",food:"noodle",foods:["驴肉火烧","缸炉烧饼","安徽板面"],play:["正定古城","西柏坡","赵州桥"]},
+ {n:"太原",p:"山西",g:"潜力组",pace:3,cost:2,climate:2,nature:2,vibe:3,social:3,career:3,price:"1.1",living:"2500-4000",ct:"四季分明偏干",hl:"晋商故里的沉稳老城",food:"noodle",foods:["刀削面","莜面","羊杂割"],play:["晋祠","柳巷","蒙山"]},
+ {n:"呼和浩特",p:"内蒙古",g:"潜力组",pace:3,cost:2,climate:1,nature:2,vibe:3,social:3,career:3,price:"1.0",living:"2500-4200",ct:"寒冷干燥",hl:"青城与草原的过渡",food:"noodle",foods:["烧麦","羊杂碎","手把肉"],play:["大召寺","草原","昭君墓"]},
+ {n:"长春",p:"吉林",g:"潜力组",pace:3,cost:2,climate:1,nature:3,vibe:3,social:3,career:3,price:"0.9",living:"2400-4000",ct:"寒冷四季",hl:"汽车城与电影之都",food:"spicy",foods:["锅包肉","杀猪菜","朝鲜冷面"],play:["伪满皇宫","净月潭","长影"]},
+ {n:"哈尔滨",p:"黑龙江",g:"潜力组",pace:3,cost:2,climate:1,nature:3,vibe:4,social:3,career:3,price:"0.9",living:"2400-4000",ct:"严寒冰雪",hl:"冰城与中央大街的浪漫",food:"spicy",foods:["红肠","锅包肉","大列巴"],play:["中央大街","冰雪大世界","索菲亚教堂"]},
+ {n:"兰州",p:"甘肃",g:"潜力组",pace:3,cost:2,climate:1,nature:3,vibe:3,social:3,career:3,price:"1.0",living:"2400-4000",ct:"干燥偏冷",hl:"黄河穿城的牛肉面之都",food:"noodle",foods:["牛肉面","手抓羊肉","酿皮"],play:["黄河风情线","白塔山","兴隆山"]},
+ {n:"西宁",p:"青海",g:"潜力组",pace:2,cost:2,climate:1,nature:4,vibe:3,social:3,career:2,price:"0.9",living:"2400-4000",ct:"高原凉爽",hl:"夏都与青藏高原门户",food:"noodle",foods:["酿皮","手抓","酸奶"],play:["塔尔寺","青海湖","茶卡盐湖"]},
+ {n:"银川",p:"宁夏",g:"潜力组",pace:2,cost:2,climate:1,nature:3,vibe:3,social:3,career:2,price:"0.8",living:"2300-3800",ct:"干燥凉爽",hl:"塞上江南的从容小城",food:"noodle",foods:["羊肉臊子面","手抓","枸杞"],play:["沙湖","西夏王陵","镇北堡"]},
+ {n:"乌鲁木齐",p:"新疆",g:"潜力组",pace:3,cost:3,climate:1,nature:3,vibe:3,social:3,career:3,price:"0.9",living:"2800-4500",ct:"寒冷干燥",hl:"亚心之城与天山脚下",food:"noodle",foods:["拌面","烤肉","抓饭"],play:["天山天池","大巴扎","红山"]},
+ /* —— 旅游 / 慢城 / 小众（宜居组） —— */
  {n:"厦门",p:"福建",g:"宜居组",pace:2,cost:4,climate:5,nature:5,vibe:4,social:3,career:2,price:"4.5",living:"4000-7000",ct:"海滨温暖",hl:"海上花园的文艺小岛",food:"seafood",foods:["沙茶面","海蛎煎","姜母鸭"],play:["鼓浪屿","环岛路","沙坡尾"]},
  {n:"大理",p:"云南",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:5,social:4,career:1,price:"1.2",living:"2500-4000",ct:"高原温和",hl:"苍山洱海的疗愈乌托邦",food:"light",foods:["饵块","酸辣鱼","乳扇"],play:["洱海","古城","苍山"]},
  {n:"丽江",p:"云南",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:5,social:4,career:1,price:"1.0",living:"2200-3800",ct:"高原温和",hl:"雪山古城的慢灵魂",food:"light",foods:["腊排骨","纳西烤鱼","鸡豆凉粉"],play:["古城","玉龙雪山","泸沽湖"]},
@@ -164,12 +204,71 @@ const CITIES = [
  {n:"桂林",p:"广西",g:"宜居组",pace:2,cost:2,climate:5,nature:5,vibe:4,social:4,career:1,price:"0.8",living:"2200-3600",ct:"山水温润",hl:"甲天下的最美山水画",food:"light",foods:["米粉","啤酒鱼","田螺"],play:["漓江","阳朔","象鼻山"]},
  {n:"威海",p:"山东",g:"宜居组",pace:2,cost:2,climate:3,nature:5,vibe:3,social:3,career:2,price:"1.0",living:"2500-4000",ct:"海洋性清爽",hl:"干净到极致的海滨小城",food:"seafood",foods:["海鲜","鲅鱼","韩餐"],play:["刘公岛","环海路","那香海"]},
  {n:"西双版纳",p:"云南",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:5,social:4,career:1,price:"0.9",living:"2000-3500",ct:"热带雨林",hl:"永不落幕的夏天",food:"light",foods:["傣味","菠萝饭","烤鱼"],play:["告庄","植物园","曼听"]},
- {n:"贵阳",p:"贵州",g:"宜居组",pace:2,cost:2,climate:4,nature:4,vibe:3,social:3,career:2,price:"0.9",living:"2200-3600",ct:"避暑凉爽",hl:"爽爽的避暑大数据城",food:"spicy",foods:["酸汤鱼","肠旺面","糯米饭"],play:["甲秀楼","黔灵山","青岩"]},
- {n:"南宁",p:"广西",g:"宜居组",pace:2,cost:2,climate:5,nature:4,vibe:3,social:3,career:2,price:"1.0",living:"2300-3800",ct:"绿城温润",hl:"半城绿树半城湖的绿城",food:"light",foods:["老友粉","柠檬鸭","酸嘢"],play:["青秀山","南湖","三街两巷"]},
- {n:"海口",p:"海南",g:"宜居组",pace:2,cost:3,climate:5,nature:5,vibe:4,social:3,career:2,price:"1.5",living:"3000-5000",ct:"热带海滨",hl:"椰风海韵的慢海岛",food:"seafood",foods:["清补凉","海南鸡饭","海鲜"],play:["骑楼老街","假日海滩","火山口"]},
+ {n:"惠州",p:"广东",g:"宜居组",pace:2,cost:3,climate:5,nature:4,vibe:3,social:3,career:2,price:"1.2",living:"2800-4500",ct:"海滨温暖",hl:"深圳后花园的从容",food:"seafood",foods:["海鲜","梅菜扣肉","汤粉"],play:["巽寮湾","西湖","双月湾"]},
  {n:"扬州",p:"江苏",g:"宜居组",pace:2,cost:2,climate:4,nature:4,vibe:5,social:4,career:1,price:"1.3",living:"2500-4000",ct:"温润江南",hl:"早上皮包水的小资慢城",food:"light",foods:["早茶","狮子头","扬州炒饭"],play:["瘦西湖","东关街","个园"]},
  {n:"烟台",p:"山东",g:"宜居组",pace:2,cost:2,climate:3,nature:5,vibe:3,social:3,career:2,price:"1.1",living:"2500-4000",ct:"海洋性温和",hl:"葡萄酒城的海岸线",food:"seafood",foods:["海鲜","苹果","葡萄酒"],play:["蓬莱","养马岛","海水浴场"]},
- {n:"惠州",p:"广东",g:"宜居组",pace:2,cost:3,climate:5,nature:4,vibe:3,social:3,career:2,price:"1.2",living:"2800-4500",ct:"海滨温暖",hl:"深圳后花园的从容",food:"seafood",foods:["海鲜","梅菜扣肉","汤粉"],play:["巽寮湾","西湖","双月湾"]}
+ {n:"海口",p:"海南",g:"宜居组",pace:2,cost:3,climate:5,nature:5,vibe:4,social:3,career:2,price:"1.5",living:"3000-5000",ct:"热带海滨",hl:"椰风海韵的慢海岛",food:"seafood",foods:["清补凉","海南鸡饭","海鲜"],play:["骑楼老街","假日海滩","火山口"]},
+ {n:"拉萨",p:"西藏",g:"宜居组",pace:1,cost:3,climate:2,nature:5,vibe:5,social:4,career:1,price:"1.2",living:"3000-5000",ct:"高原阳光",hl:"离天空最近的圣城",food:"light",foods:["藏面","牦牛酸奶","甜茶"],play:["布达拉宫","大昭寺","八廓街"]},
+ {n:"绍兴",p:"浙江",g:"宜居组",pace:2,cost:3,climate:4,nature:4,vibe:5,social:3,career:2,price:"1.6",living:"3000-5000",ct:"温润江南",hl:"鲁迅笔下的水墨江南",food:"light",foods:["黄酒","茴香豆","梅干菜"],play:["鲁迅故里","沈园","安昌古镇"]},
+ {n:"嘉兴",p:"浙江",g:"宜居组",pace:2,cost:3,climate:4,nature:4,vibe:4,social:3,career:2,price:"1.7",living:"3000-5000",ct:"温润江南",hl:"粽子与水乡慢时光",food:"light",foods:["粽子","南湖菱","文虎酱鸭"],play:["乌镇","西塘","南湖"]},
+ {n:"湖州",p:"浙江",g:"宜居组",pace:2,cost:3,climate:4,nature:4,vibe:4,social:3,career:2,price:"1.5",living:"3000-4800",ct:"温润江南",hl:"太湖边的丝稠慢城",food:"light",foods:["粽子","太湖蟹","千张包"],play:["南浔古镇","莫干山","太湖"]},
+ {n:"舟山",p:"浙江",g:"宜居组",pace:2,cost:3,climate:5,nature:5,vibe:3,social:3,career:2,price:"1.6",living:"3000-5000",ct:"海滨温暖",hl:"千岛海鲜的群岛之城",food:"seafood",foods:["海鲜","带鱼","观音饼"],play:["普陀山","朱家尖","东极岛"]},
+ {n:"泉州",p:"福建",g:"宜居组",pace:2,cost:3,climate:5,nature:4,vibe:5,social:3,career:2,price:"1.6",living:"2800-4500",ct:"海滨温暖",hl:"半城烟火半城仙的世遗城",food:"seafood",foods:["面线糊","肉粽","姜母鸭"],play:["开元寺","西街","蟳埔村"]},
+ {n:"漳州",p:"福建",g:"宜居组",pace:2,cost:2,climate:5,nature:4,vibe:4,social:3,career:1,price:"1.1",living:"2400-4000",ct:"海滨温暖",hl:"花果之乡与土楼群",food:"light",foods:["卤面","四果汤","手抓面"],play:["南靖土楼","东山岛","火山岛"]},
+ {n:"江门",p:"广东",g:"宜居组",pace:2,cost:2,climate:5,nature:4,vibe:3,social:3,career:2,price:"1.0",living:"2500-4000",ct:"海滨温暖",hl:"侨乡与碉楼的慢城",food:"light",foods:["陈皮","煲仔饭","古井烧鹅"],play:["开平碉楼","上下川岛","赤坎"]},
+ {n:"湛江",p:"广东",g:"潜力组",pace:2,cost:2,climate:5,nature:4,vibe:2,social:3,career:2,price:"0.9",living:"2400-4000",ct:"热带海滨",hl:"大陆最南的雷州半岛",food:"seafood",foods:["海鲜","白切鸡","田艾籺"],play:["湖光岩","东海岛","特呈岛"]},
+ {n:"泰安",p:"山东",g:"宜居组",pace:2,cost:2,climate:3,nature:5,vibe:3,social:3,career:1,price:"1.0",living:"2500-4000",ct:"四季分明",hl:"泰山脚下的安稳城",food:"noodle",foods:["煎饼","泰山豆腐","炒鸡"],play:["泰山","岱庙","封禅大典"]},
+ {n:"洛阳",p:"河南",g:"宜居组",pace:2,cost:2,climate:3,nature:4,vibe:5,social:3,career:2,price:"1.0",living:"2400-4000",ct:"四季分明",hl:"牡丹与千年帝都",food:"noodle",foods:["水席","牛肉汤","浆面条"],play:["龙门石窟","白马寺","老城"]},
+ {n:"开封",p:"河南",g:"宜居组",pace:2,cost:2,climate:3,nature:3,vibe:5,social:3,career:1,price:"0.8",living:"2200-3600",ct:"四季分明",hl:"大宋汴京的市井梦华",food:"noodle",foods:["灌汤包","胡辣汤","桶子鸡"],play:["清明上河园","铁塔","包公湖"]},
+ {n:"景德镇",p:"江西",g:"宜居组",pace:2,cost:2,climate:4,nature:4,vibe:5,social:3,career:1,price:"0.9",living:"2200-3600",ct:"温润温和",hl:"千年瓷都的慢手艺城",food:"light",foods:["冷粉","饺子粑","碱水粑"],play:["陶溪川","古窑","瑶里"]},
+ {n:"九江",p:"江西",g:"宜居组",pace:2,cost:2,climate:4,nature:5,vibe:3,social:3,career:1,price:"0.9",living:"2300-3800",ct:"温润沿江",hl:"匡庐奇秀与江湖之会",food:"spicy",foods:["庐山石鸡","茶饼","炒粉"],play:["庐山","鄱阳湖","浔阳楼"]},
+ {n:"上饶",p:"江西",g:"宜居组",pace:2,cost:2,climate:4,nature:5,vibe:4,social:3,career:1,price:"0.9",living:"2200-3600",ct:"温润山地",hl:"三清山与婺源画卷",food:"light",foods:["米粉","糊豆腐","荷包红鲤"],play:["婺源","三清山","龟峰"]},
+ {n:"黄山",p:"安徽",g:"宜居组",pace:2,cost:2,climate:4,nature:5,vibe:5,social:3,career:1,price:"1.0",living:"2300-3800",ct:"温润山地",hl:"天下奇山与徽派古村",food:"light",foods:["臭鳜鱼","毛豆腐","徽州饼"],play:["黄山","宏村","西递"]},
+ {n:"马鞍山",p:"安徽",g:"潜力组",pace:3,cost:2,climate:4,nature:4,vibe:3,social:3,career:2,price:"1.0",living:"2500-4000",ct:"温润沿江",hl:"钢城与采石矶的诗意",food:"light",foods:["采石矶茶干","当涂大肉面","肥肠"],play:["采石矶","雨山湖","褒禅山"]},
+ {n:"六盘水",p:"贵州",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:3,social:3,career:1,price:"0.6",living:"2000-3300",ct:"凉爽高原",hl:"中国凉都的避暑天堂",food:"spicy",foods:["羊肉粉","烙锅","水城苦荞"],play:["乌蒙大草原","明湖","野玉海"]},
+ {n:"安顺",p:"贵州",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:3,social:3,career:1,price:"0.6",living:"2000-3300",ct:"凉爽宜居",hl:"黄果树瀑布边的凉爽城",food:"spicy",foods:["裹卷","夺夺粉","牛肉粉"],play:["黄果树","龙宫","屯堡"]},
+ {n:"荔波",p:"贵州",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:4,social:4,career:1,price:"0.7",living:"2000-3300",ct:"温润喀斯特",hl:"地球绿宝石的小众秘境",food:"light",foods:["酸肉","鱼包韭菜","水族饭"],play:["小七孔","大七孔","茂兰"]},
+ {n:"凯里",p:"贵州",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:4,social:4,career:1,price:"0.7",living:"2000-3300",ct:"温润山地",hl:"苗侗风情与酸汤之乡",food:"spicy",foods:["酸汤鱼","苗家糍粑","牛瘪"],play:["西江千户苗寨","下司古镇","郎德"]},
+ {n:"张家界",p:"湖南",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:4,social:3,career:1,price:"0.8",living:"2200-3600",ct:"温润山地",hl:"悬浮山水的奇幻之城",food:"spicy",foods:["三下锅","土家腊肉","葛根粉"],play:["武陵源","天门山","大峡谷"]},
+ {n:"湘西",p:"湖南",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:5,social:4,career:1,price:"0.8",living:"2200-3600",ct:"温润山地",hl:"凤凰古城的吊脚楼慢夜",food:"spicy",foods:["血粑鸭","酸鱼","米豆腐"],play:["凤凰古城","芙蓉镇","德夯"]},
+ {n:"岳阳",p:"湖南",g:"潜力组",pace:2,cost:2,climate:4,nature:4,vibe:3,social:3,career:2,price:"0.9",living:"2300-3800",ct:"温润江湖",hl:"洞庭天下水的江湖城",food:"spicy",foods:["岳阳烧烤","君山银针","鱼火锅"],play:["岳阳楼","洞庭湖","君山"]},
+ {n:"宜昌",p:"湖北",g:"潜力组",pace:2,cost:2,climate:4,nature:5,vibe:3,social:3,career:2,price:"0.9",living:"2300-3800",ct:"温润沿江",hl:"三峡门户与水电之城",food:"spicy",foods:["凉虾","萝卜饺子","肥鱼"],play:["三峡大坝","三峡人家","清江画廊"]},
+ {n:"襄阳",p:"湖北",g:"潜力组",pace:2,cost:2,climate:4,nature:3,vibe:4,social:3,career:2,price:"0.8",living:"2200-3600",ct:"温润沿江",hl:"金庸笔下的侠义古城",food:"spicy",foods:["牛肉面","缠蹄","黄酒"],play:["古城墙","古隆中","唐城"]},
+ {n:"恩施",p:"湖北",g:"宜居组",pace:1,cost:2,climate:4,nature:5,vibe:4,social:3,career:1,price:"0.8",living:"2200-3600",ct:"凉爽山地",hl:"鄂西秘境的土家梯田",food:"spicy",foods:["合渣","腊肉","油茶汤"],play:["大峡谷","腾龙洞","梭布垭"]},
+ {n:"乐山",p:"四川",g:"宜居组",pace:2,cost:2,climate:4,nature:5,vibe:4,social:3,career:1,price:"0.8",living:"2300-3800",ct:"温润宜居",hl:"大佛与美食的安逸城",food:"spicy",foods:["钵钵鸡","甜皮鸭","豆腐脑"],play:["乐山大佛","峨眉山","嘉阳小火车"]},
+ {n:"攀枝花",p:"四川",g:"宜居组",pace:1,cost:2,climate:5,nature:4,vibe:2,social:3,career:1,price:"0.7",living:"2200-3600",ct:"温暖干热",hl:"四川唯一过冬的暖城",food:"spicy",foods:["羊肉米线","盐边菜","芒果"],play:["二滩","格萨拉","米易"]},
+ {n:"西昌",p:"四川",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:3,social:3,career:1,price:"0.8",living:"2200-3600",ct:"高原温暖",hl:"月城与邛海的光影",food:"spicy",foods:["火盆烧烤","醉虾","坨坨肉"],play:["邛海","泸山","卫星发射中心"]},
+ {n:"腾冲",p:"云南",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:5,social:4,career:1,price:"0.9",living:"2000-3500",ct:"高原温和",hl:"极边慢城的温泉与古村",food:"light",foods:["饵丝","大救驾","土锅子"],play:["和顺古镇","热海","火山"]},
+ {n:"普洱",p:"云南",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:3,social:3,career:1,price:"0.7",living:"2000-3300",ct:"高原温暖",hl:"茶马古道的森林氧吧",food:"light",foods:["普洱茶","鸡豆腐","酸笋"],play:["茶山","太阳河","那柯里"]},
+ {n:"香格里拉",p:"云南",g:"宜居组",pace:1,cost:2,climate:2,nature:5,vibe:5,social:4,career:1,price:"1.0",living:"2200-3800",ct:"高原凉爽",hl:"人间天堂的雪山草甸",food:"light",foods:["酥油茶","牦牛肉","青稞饼"],play:["普达措","独克宗","梅里雪山"]},
+ {n:"万宁",p:"海南",g:"宜居组",pace:1,cost:3,climate:5,nature:5,vibe:4,social:3,career:1,price:"1.3",living:"2800-4500",ct:"热带海滨",hl:"冲浪与椰林的慢海岛",food:"seafood",foods:["清补凉","和乐蟹","东山羊"],play:["日月湾","石梅湾","兴隆"]},
+ {n:"陵水",p:"海南",g:"宜居组",pace:1,cost:3,climate:5,nature:5,vibe:4,social:3,career:1,price:"1.4",living:"2800-4500",ct:"热带海滨",hl:"清水湾的清水慢生活",food:"seafood",foods:["酸粉","海鲜","椰子"],play:["清水湾","分界洲岛","呆呆岛"]},
+ {n:"北海",p:"广西",g:"宜居组",pace:2,cost:2,climate:5,nature:5,vibe:3,social:3,career:1,price:"0.8",living:"2200-3600",ct:"海滨温暖",hl:"银滩与老街的慢节奏",food:"seafood",foods:["海鲜","虾饼","糖水"],play:["银滩","老街","涠洲岛"]},
+ {n:"防城港",p:"广西",g:"宜居组",pace:1,cost:2,climate:5,nature:5,vibe:3,social:3,career:1,price:"0.7",living:"2000-3300",ct:"海滨温暖",hl:"边境海港的安静小城",food:"seafood",foods:["海鲜","卷粉","鸡粉"],play:["白浪滩","金滩","蝴蝶岛"]},
+ {n:"延安",p:"陕西",g:"宜居组",pace:2,cost:2,climate:2,nature:4,vibe:5,social:3,career:1,price:"0.7",living:"2100-3400",ct:"干燥凉爽",hl:"黄土高原的红色圣城",food:"noodle",foods:["洋芋擦擦","抿节","羊肉面"],play:["宝塔山","枣园","壶口"]},
+ {n:"汉中",p:"陕西",g:"宜居组",pace:2,cost:2,climate:4,nature:5,vibe:3,social:3,career:1,price:"0.8",living:"2200-3600",ct:"温润盆地",hl:"秦岭以南的江南小城",food:"spicy",foods:["热面皮","菜豆腐","浆水面"],play:["武侯祠","石门栈道","黎坪"]},
+ {n:"大同",p:"山西",g:"宜居组",pace:2,cost:2,climate:1,nature:3,vibe:5,social:3,career:1,price:"0.8",living:"2200-3600",ct:"寒冷干燥",hl:"云冈石窟与清凉夏都",food:"noodle",foods:["刀削面","羊杂","凉粉"],play:["云冈石窟","恒山","古城墙"]},
+ {n:"平遥",p:"山西",g:"宜居组",pace:1,cost:2,climate:2,nature:3,vibe:5,social:3,career:1,price:"0.9",living:"2100-3400",ct:"四季分明偏干",hl:"活着的明清金融古城",food:"noodle",foods:["牛肉","碗托","栲栳栳"],play:["平遥古城","日升昌","双林寺"]},
+ {n:"秦皇岛",p:"河北",g:"宜居组",pace:2,cost:2,climate:3,nature:4,vibe:3,social:3,career:1,price:"1.0",living:"2400-4000",ct:"海洋性凉爽",hl:"北戴河的避暑海滨",food:"noodle",foods:["海鲜","面条","烧烤"],play:["北戴河","山海关","老龙头"]},
+ {n:"承德",p:"河北",g:"宜居组",pace:2,cost:2,climate:2,nature:4,vibe:4,social:3,career:1,price:"0.9",living:"2300-3800",ct:"凉爽山区",hl:"避暑山庄的皇家夏都",food:"noodle",foods:["荞面","烧饼","改刀肉"],play:["避暑山庄","外八庙","磬锤峰"]},
+ {n:"丹东",p:"辽宁",g:"宜居组",pace:2,cost:2,climate:3,nature:5,vibe:3,social:3,career:1,price:"0.8",living:"2200-3600",ct:"海洋性温和",hl:"中朝边境的干净江城",food:"seafood",foods:["海鲜","草莓","朝鲜冷面"],play:["鸭绿江","凤凰山","虎山长城"]},
+ {n:"延吉",p:"吉林",g:"宜居组",pace:2,cost:2,climate:1,nature:4,vibe:4,social:3,career:1,price:"0.9",living:"2200-3600",ct:"寒冷四季",hl:"朝鲜族风味的烟火小城",food:"spicy",foods:["冷面","烤肉","米肠"],play:["长白山","帽儿山","中国朝鲜族民俗园"]},
+ {n:"漠河",p:"黑龙江",g:"宜居组",pace:1,cost:2,climate:1,nature:5,vibe:4,social:4,career:1,price:"0.8",living:"2100-3400",ct:"极寒北境",hl:"中国最北的极光童话镇",food:"spicy",foods:["冷水鱼","锅包肉","粘豆包"],play:["北极村","北红村","龙江第一湾"]},
+ {n:"牡丹江",p:"黑龙江",g:"宜居组",pace:2,cost:2,climate:1,nature:5,vibe:3,social:3,career:1,price:"0.8",living:"2200-3600",ct:"寒冷四季",hl:"雪乡与镜泊湖的北国",food:"spicy",foods:["杀猪菜","烤冷面","镜泊湖鱼"],play:["雪乡","镜泊湖","地下森林"]},
+ {n:"呼伦贝尔",p:"内蒙古",g:"宜居组",pace:1,cost:2,climate:1,nature:5,vibe:5,social:4,career:1,price:"0.9",living:"2300-3800",ct:"寒冷草原",hl:"草原天际线的自由呼吸",food:"noodle",foods:["手把肉","奶茶","涮羊肉"],play:["呼伦湖","大草原","满洲里"]},
+ {n:"满洲里",p:"内蒙古",g:"宜居组",pace:1,cost:2,climate:1,nature:4,vibe:4,social:4,career:1,price:"0.9",living:"2300-3800",ct:"寒冷边境",hl:"中俄蒙风情的童话边城",food:"noodle",foods:["俄式西餐","手把肉","列巴"],play:["套娃广场","国门","呼伦湖"]},
+ {n:"阿尔山",p:"内蒙古",g:"宜居组",pace:1,cost:2,climate:1,nature:5,vibe:5,social:4,career:1,price:"0.8",living:"2100-3400",ct:"寒冷森林",hl:"火山温泉的森林秘境",food:"noodle",foods:["山野菜","冷水鱼","羊肉"],play:["天池","温泉","森林公园"]},
+ {n:"喀什",p:"新疆",g:"宜居组",pace:2,cost:2,climate:2,nature:4,vibe:5,social:4,career:1,price:"0.7",living:"2200-3600",ct:"干燥温暖",hl:"丝路尽头的活古城",food:"noodle",foods:["烤包子","抓饭","缸子肉"],play:["喀什古城","香妃园","帕米尔"]},
+ {n:"伊宁",p:"新疆",g:"宜居组",pace:2,cost:2,climate:3,nature:5,vibe:5,social:3,career:1,price:"0.8",living:"2300-3800",ct:"温和河谷",hl:"塞外江南的薰衣草城",food:"noodle",foods:["拌面","烤肉","手工冰淇淋"],play:["喀赞其","赛里木湖","那拉提"]},
+ {n:"吐鲁番",p:"新疆",g:"宜居组",pace:1,cost:2,climate:5,nature:3,vibe:3,social:3,career:1,price:"0.6",living:"2100-3400",ct:"极热干燥",hl:"火洲与葡萄沟的异域",food:"noodle",foods:["葡萄","烤馕","拌面"],play:["火焰山","葡萄沟","坎儿井"]},
+ {n:"阿勒泰",p:"新疆",g:"宜居组",pace:1,cost:2,climate:1,nature:5,vibe:5,social:4,career:1,price:"0.7",living:"2200-3600",ct:"寒冷山区",hl:"神的后花园与雪都",food:"noodle",foods:["手把肉","奶茶","馕"],play:["喀纳斯","禾木","可可托海"]},
+ {n:"敦煌",p:"甘肃",g:"宜居组",pace:1,cost:2,climate:2,nature:4,vibe:5,social:3,career:1,price:"0.7",living:"2100-3400",ct:"干燥凉爽",hl:"大漠与壁画的千年交汇",food:"noodle",foods:["驴肉黄面","杏皮水","羊肉粉汤"],play:["莫高窟","鸣沙山","月牙泉"]},
+ {n:"张掖",p:"甘肃",g:"宜居组",pace:1,cost:2,climate:2,nature:5,vibe:4,social:3,career:1,price:"0.7",living:"2100-3400",ct:"干燥凉爽",hl:"七彩丹霞的彩色盆地",food:"noodle",foods:["搓鱼面","牛肉小饭","炒炮"],play:["七彩丹霞","马蹄寺","平山湖"]},
+ {n:"中卫",p:"宁夏",g:"宜居组",pace:1,cost:2,climate:2,nature:4,vibe:4,social:3,career:1,price:"0.7",living:"2100-3400",ct:"干燥凉爽",hl:"沙漠水城的黄河宿集",food:"noodle",foods:["蒿子面","羊肉臊子","硒砂瓜"],play:["沙坡头","黄河宿集","腾格里"]},
+ {n:"林芝",p:"西藏",g:"宜居组",pace:1,cost:2,climate:3,nature:5,vibe:5,social:4,career:1,price:"1.1",living:"2300-3800",ct:"高原温润",hl:"西藏江南的桃花雪峰",food:"light",foods:["藏香猪","石锅鸡","松茸"],play:["雅鲁藏布大峡谷","南迦巴瓦","桃花沟"]},
+ {n:"日喀则",p:"西藏",g:"宜居组",pace:1,cost:2,climate:2,nature:5,vibe:5,social:4,career:1,price:"1.0",living:"2200-3600",ct:"高原凉爽",hl:"珠峰脚下的后藏古城",food:"light",foods:["藏面","牦牛肉","糌粑"],play:["扎什伦布寺","珠峰大本营","羊湖"]},
+ {n:"台北",p:"中国台湾",g:"宜居组",pace:3,cost:4,climate:5,nature:4,vibe:4,social:3,career:3,price:"3.5",living:"4500-8000",ct:"亚热带温暖",hl:"巷弄咖啡与山海之间",food:"light",foods:["牛肉面","夜市小吃","珍珠奶茶"],play:["101","九份","阳明山"]},
+ {n:"高雄",p:"中国台湾",g:"宜居组",pace:2,cost:3,climate:5,nature:4,vibe:3,social:3,career:2,price:"2.5",living:"3800-6500",ct:"亚热带温暖",hl:"港都海风与文艺渔港",food:"seafood",foods:["海鲜","牛肉面","木瓜牛奶"],play:["西子湾","驳二","旗津"]}
 ];
 
 /* ============ 问卷 ============ */
@@ -256,19 +355,35 @@ function renderQ(){
   const prog=(cur/Q.length)*100;
   document.querySelector('#progress>i').style.width=prog+'%';
   let h=`<div class="card fade"><div class="q-emoji">${q.e}</div><div class="q-title">${q.t}</div><div class="q-sub">${q.s}（${cur+1}/${Q.length}）</div>`;
-  q.opts.forEach((o,i)=>{ h+=`<div class="opt" onclick="pick(${i})"><span class="ic">${o.ic}</span><span>${o.x}</span></div>`; });
+  q.opts.forEach((o,i)=>{
+    const sel=(answers[cur]===i)?' sel':'';
+    h+=`<div class="opt${sel}" onclick="pick(${i})"><span class="ic">${o.ic}</span><span>${o.x}</span></div>`;
+  });
   h+=`</div>`;
+  if(cur>0){
+    h+=`<button class="btn ghost" style="margin-top:6px" onclick="prev()">← 上一题</button>`;
+  }
   document.getElementById('quiz').innerHTML=h;
 }
+function prev(){ cur--; renderQ(); }
 function pick(i){
-  const o=Q[cur].opts[i];
-  if(o.d){ for(const k in o.d){ want[k]=Math.max(1,Math.min(5,(want[k]||3)+o.d[k])); } }
-  if(o.food) food=o.food;
   answers[cur]=i;
   const opts=document.querySelectorAll('#quiz .opt');
   opts.forEach(el=>el.classList.remove('sel'));
   opts[i].classList.add('sel');
   setTimeout(()=>{ cur++; if(cur<Q.length) renderQ(); else finish(); },180);
+}
+/* 统一从答案聚合，支持随时返回改选而不叠加 */
+function aggregate(){
+  let w={pace:3,cost:3,climate:3,nature:3,vibe:3,social:3,career:3};
+  let f=null;
+  answers.forEach((ai,qi)=>{
+    if(ai==null) return;
+    const o=Q[qi].opts[ai];
+    if(o.d){ for(const k in o.d){ w[k]=Math.max(1,Math.min(5,(w[k]||3)+o.d[k])); } }
+    if(o.food) f=o.food;
+  });
+  return {want:w,food:f};
 }
 
 function calc(){
@@ -277,7 +392,7 @@ function calc(){
     DIMS.forEach(d=>{ const diff=Math.abs(c[d]-want[d]); const contrib=Math.max(0,1-diff/4); sw+=W[d]; sc+=W[d]*contrib; });
     let pct=100*sc/sw;
     if(food && c.food===food) pct+=4;
-    pct=Math.max(58,Math.min(99,Math.round(pct)));
+    pct=Math.max(50,Math.min(99,Math.round(pct)));
     return {c,pct};
   }).sort((a,b)=>b.pct-a.pct);
   return res;
@@ -309,6 +424,7 @@ function reasons(c){
 }
 
 function finish(){
+  const agg=aggregate(); want=agg.want; food=agg.food;
   document.querySelector('#progress>i').style.width='100%';
   const res=calc(); const pe=persona(); const top=res.slice(0,3);
   let h=`<div class="card persona fade"><div class="pe">${pe.e}</div><div class="pl">你的城市人格 · ${pe.l}</div><div class="pd">${pe.d}</div></div>`;
@@ -343,6 +459,7 @@ function finish(){
   document.getElementById('result').classList.remove('hidden');
   window.scrollTo(0,0);
 }
+document.querySelectorAll('.cc').forEach(e=>e.textContent=CITIES.length);
 </script>
 </body>
 </html>
